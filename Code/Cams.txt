@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Cam : MonoBehaviour
+{
+    public bool camSwitch;
+    public Camera cam3, cam2;
+
+    void Start()
+    {
+        //would be better to disable this camera in the scene 
+        cam3.enabled = false;
+    }
+
+    void Update()
+    {
+
+        if (Input.GetKeyDown("c"))
+        {
+
+            if (cam3.enabled)
+            {
+                cam2.enabled = true;
+                cam3.enabled = false;
+            }
+            else
+            {
+                cam3.enabled = true;
+                cam2.enabled = false;
+            }
+        }
+    }
+
+}
+

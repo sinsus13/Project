@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyStart : MonoBehaviour
+{
+    public EnemyMovement EM;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        EM.enabled = false;
+    }
+
+    void OnTriggerEnter(UnityEngine.Collider collisionInfo)
+    {
+        if (collisionInfo.gameObject.CompareTag("StartMove"))
+        {
+
+            EM.enabled = true;
+
+        }
+    }
+}

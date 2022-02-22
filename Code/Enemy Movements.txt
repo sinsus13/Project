@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyMovement : MonoBehaviour
+{
+    [SerializeField] private Vector3 _velocity = Vector3.left;
+    private Rigidbody _rigidBody;
+
+    private void Start()
+    {
+        _rigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Physics.Raycast(transform.position, _velocity, out RaycastHit hit, new Vector3(1, 0, 1).magnitude /* some small distance for detection radius */, LayerMask.GetMask("MyLayer")))
+        {
+            _velocity = Vector3.Reflect(_velocity, hit.normal).normalized * _velocity.magnitude;
+        }
+
+        _rigidBody.velocity = _velocity;
+    }
+}

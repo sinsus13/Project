@@ -1,0 +1,75 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SP : MonoBehaviour
+{
+    public float charge = 0;
+    public int SEnemy = 25;
+    public int LEnemy = 30;
+    public Dash dash;
+    public Movement2D moveT;
+    public Movement3D MoveT;
+    public Rigidbody rb;
+    public float sec = 5f;
+
+    void OnCollisionEnter(UnityEngine.Collision collisionInfo)
+    {
+        if (collisionInfo.gameObject.CompareTag("Small Enemy"))
+        {
+            charge += SEnemy;
+        }
+        else if (collisionInfo.gameObject.CompareTag("Large Enemy"))
+        {
+            charge += LEnemy;
+        }
+    }
+
+    void Start()
+    {
+
+        StartCoroutine(Coroutine());
+
+    }
+
+    IEnumerator Coroutine()
+    {
+
+        if (MoveT.enabled == true && charge >= 100f)
+        {
+
+            MoveT.enabled = false;
+
+            yield return new WaitForSeconds(sec);
+
+            MoveT.enabled = true;
+
+        }
+        else if (moveT.enabled == true)
+        {
+
+            moveT.enabled = false;
+
+            yield return new WaitForSeconds(sec);
+
+            moveT.enabled = true;
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+        if (charge >= 100f && (Input.GetKeyDown("q")))
+        {
+
+            dash.enabled = true;
+
+            charge = 0;
+
+        }
+
+    }
+
+}

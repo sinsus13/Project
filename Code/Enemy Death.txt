@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyDeath : MonoBehaviour
+{
+    public EnemyMovement EM;
+    public Enemy enemy;
+    public Rigidbody erb;
+    public Rigidbody prb;
+    public Collider ecol;
+    public Collider scol;
+    public Collider hcol;
+    public float hop = 500f;
+    public Dash dash;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    public void OnCollisionEnter(UnityEngine.Collision collisionInfo)
+    {
+
+        if (collisionInfo.gameObject.name == ("Head"))
+        {
+
+            Destroy(erb);
+            EM.enabled = false;
+            scol.enabled = false;
+            hcol.enabled = false;
+            ecol.enabled = false;
+            enemy.enabled = false;
+            prb.AddForce(0, hop * Time.deltaTime, 0, ForceMode.VelocityChange);
+
+        }
+        else if ((collisionInfo.gameObject.tag == "Enemy" && dash.enabled == true ))
+        {
+
+            Destroy(erb);
+            EM.enabled = false;
+            scol.enabled = false;
+            hcol.enabled = false;
+            ecol.enabled = false;
+            enemy.enabled = false;
+
+        }
+    }
+}

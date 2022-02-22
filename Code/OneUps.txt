@@ -1,0 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OneUp : MonoBehaviour
+{
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        if (collisionInfo.gameObject.TryGetComponent(out Lives lives))
+            lives.AddLife();
+    }
+}
