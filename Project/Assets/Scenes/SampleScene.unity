@@ -435,6 +435,7 @@ MonoBehaviour:
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   speedH: 10
+  speedV: 10
   yaw: 0
   pitch: 0
   Floored: 1
