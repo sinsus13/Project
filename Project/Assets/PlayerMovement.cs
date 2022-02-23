@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public float speedH = 2.0f;
-    public float speedV = 2.0f;
     public float yaw = 0.0f;
     public float pitch = 0.0f;
     public bool Floored = true;
@@ -42,8 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        rb.transform.Rotate(0, -Rotate, 0, Space.Self);
-        rb.transform.Rotate(0, Rotate, 0, Space.Self);
+        rb.transform.eulerAngles = new Vector3(0, yaw, 0);
 
         if (Input.GetKey("w") || (Input.GetKey("up")))
         {
@@ -79,8 +77,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
-
     }
 
     void OnCollisionEnter(Collision collision)
