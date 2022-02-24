@@ -17,6 +17,7 @@ public class CameraMovement : MonoBehaviour
         yaw += speedH * Input.GetAxis("Mouse X");
         pitch += speedV * Input.GetAxis("Mouse Y");
         rb.transform.eulerAngles = new Vector3(0, yaw, -pitch);
-
+        
     }
+
 }

@@ -72,10 +72,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collisionInfo)
     {
 
-        if (collision.gameObject.tag == "Ground")
+        if (collisionInfo.gameObject.CompareTag("Ground"))
         {
 
             Floored = true;
