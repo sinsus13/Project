@@ -7,13 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public float Force = 500f;
     public float Jump = 500f;
-    public float Rotate = 5f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
-    public float speedH = 2.0f;
-    public float speedV = 2.0f;
-    public float yaw = 0.0f;
-    public float pitch = 0.0f;
     public bool Floored = true;
 
     // Start is called before the first frame update
@@ -75,9 +70,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch += speedV * Input.GetAxis("Mouse Y");
-        rb.transform.eulerAngles = new Vector3(0, yaw, -pitch);
     }
 
     void OnCollisionEnter(Collision collision)
