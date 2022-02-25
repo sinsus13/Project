@@ -23,31 +23,31 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey("a") || (Input.GetKey("left")))
+        if (Input.GetKey("s") || (Input.GetKey("left")))
         {
 
             rb.AddRelativeForce(0, 0, -Force * Time.deltaTime, ForceMode.VelocityChange);
 
         }
 
-        if (Input.GetKey("d") || (Input.GetKey("right")))
+        if (Input.GetKey("w") || (Input.GetKey("right")))
         {
 
             rb.AddRelativeForce(0, 0, Force * Time.deltaTime, ForceMode.VelocityChange);
 
         }
 
-        if (Input.GetKey("w") || (Input.GetKey("up")))
-        {
-
-            rb.AddRelativeForce(-Force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-
-        }
-
-        if (Input.GetKey("s") || (Input.GetKey("down")))
+        if (Input.GetKey("d") || (Input.GetKey("up")))
         {
 
             rb.AddRelativeForce(Force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+
+        }
+
+        if (Input.GetKey("a") || (Input.GetKey("down")))
+        {
+
+            rb.AddRelativeForce(-Force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 
         }
 
