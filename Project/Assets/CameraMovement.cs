@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    public Rigidbody rb;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
     public float yaw = 0.0f;
@@ -15,7 +16,7 @@ public class CameraMovement : MonoBehaviour
 
         yaw += speedH * Input.GetAxis("Mouse X");
         pitch += speedV * Input.GetAxis("Mouse Y");
-        transform.eulerAngles = new Vector3(pitch, yaw, 0);
+        rb.transform.eulerAngles = new Vector3(-pitch, yaw, 0);
         
     }
 
