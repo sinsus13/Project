@@ -20,7 +20,6 @@ public class Pistol : MonoBehaviour
     public Vector3 BulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
     public Transform BulletSpawnPoint;
     public Transform BulletTrailSpawnPoint;
-    public TrailRenderer BulletTrail;
     public float ShootDelay = 0.5f;
     public LayerMask Mask;
     public Animator Animator;
@@ -61,31 +60,32 @@ public class Pistol : MonoBehaviour
 
         IEnumerator Reload ()
         {
+            Animator.SetBool("Reload", true);
             isReloading = true;
             Debug.Log("Reloading boi");
             yield return new WaitForSeconds(reloadTime);
-
+            Animator.SetBool("Reload", false);
             currentAmmo = maxAmmo;
             isReloading = false;
         }
 
         
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButtonDown(0))
         {
 
             shoot ();
             Animator.SetBool("IsShooting", true);
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetMouseButtonDown(1))
         {
 
             Animator.SetBool("Aim", true);
             AddBulletSpread = false;
         }
 
-        if (Input.GetButtonUp("Fire2"))
+        if (Input.GetMouseButtonUp(1))
         {
 
             Animator.SetBool("Aim", false);
@@ -136,8 +136,6 @@ public class Pistol : MonoBehaviour
             if (Physics.Raycast(BulletSpawnPoint.position, direction, out hit, float.MaxValue, Mask))
             {
 
-                TrailRenderer trail = Instantiate(BulletTrail, BulletTrailSpawnPoint.position, Quaternion.identity);
-                StartCoroutine(SpawnTrail(trail, hit));
 
                 LastShootTime = Time.time;
 
