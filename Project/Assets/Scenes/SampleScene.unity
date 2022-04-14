@@ -337,7 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  muzzleFlash: {fileID: 0}
+  muzzleFlash: {fileID: 901962557093865459, guid: 1ac967f01f564a34abce28f20c29467f, type: 3}
   maxAmmo: 20
   reloadTime: 5
   bulletHole: {fileID: 54751719868953506, guid: fede9ad482c1a954285f58f40caf788e, type: 3}
@@ -346,7 +346,7 @@ MonoBehaviour:
   AddBulletSpread: 1
   BulletSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
   BulletSpawnPoint: {fileID: 250435450}
-  BulletTrailSpawnPoint: {fileID: 0}
+  BulletTrailSpawnPoint: {fileID: 250435450}
   ShootDelay: 0
   Mask:
     serializedVersion: 2
