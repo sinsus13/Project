@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rifle : MonoBehaviour
 {
     public float damage = 10f;
     public float range = 100f;
+    public float fireRate = 15f;
     public ParticleSystem muzzleFlash;
     public int maxAmmo = 20;
     private int currentAmmo;
@@ -14,7 +14,7 @@ public class Rifle : MonoBehaviour
     public GameObject bulletHole;
     public GameObject bulletImpact;
     public float impactForce = 100f;
-
+    
     public bool AddBulletSpread = true;
     public Vector3 BulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
     public Transform BulletSpawnPoint;
@@ -24,12 +24,17 @@ public class Rifle : MonoBehaviour
     public Animator Animator;
     public float LastShootTime;
     public bool Shoot = false;
+
+    private float nextTimeToFire = 0f;
+
+    //calls the animator
     public void Awake()
     {
 
         Animator = GetComponent<Animator>();
 
     }
+    //full mag at start
     private void Start()
     {
 
@@ -70,10 +75,11 @@ public class Rifle : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextTimeToFire)
         {
 
             shoot();
+            nextTimeToFire = Time.time + 1f / fireRate;
             Animator.SetBool("IsShooting", true);
         }
 

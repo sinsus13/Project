@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -20,7 +18,7 @@ public class Target : MonoBehaviour
 
     }
 
-    void Die ()
+    void Die()
     {
 
         Destroy(gameObject);

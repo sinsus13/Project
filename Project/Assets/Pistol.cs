@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -54,11 +53,11 @@ public class Pistol : MonoBehaviour
         if (currentAmmo <= 0)
         {
 
-            StartCoroutine (Reload());
+            StartCoroutine(Reload());
             return;
         }
 
-        IEnumerator Reload ()
+        IEnumerator Reload()
         {
             Animator.SetBool("Reload", true);
             isReloading = true;
@@ -69,12 +68,12 @@ public class Pistol : MonoBehaviour
             isReloading = false;
         }
 
-        
+
 
         if (Input.GetMouseButtonDown(0))
         {
 
-            shoot ();
+            shoot();
             Animator.SetBool("IsShooting", true);
         }
 
@@ -172,7 +171,7 @@ public class Pistol : MonoBehaviour
         }
     }
 
-    
+
 
     public IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit hit)
     {
