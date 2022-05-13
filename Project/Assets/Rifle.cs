@@ -19,8 +19,8 @@ public class Rifle : MonoBehaviour
     public LayerMask whatIsEnemy;
 
     //Graphics
-    public GameObject bulletHoleGraphic, dirt;
-    public GameObject muzzleFlash;
+    public GameObject bulletHoleGraphic;
+    public ParticleSystem dirt;
     private void Awake()
     {
         bulletsLeft = magazineSize;
@@ -65,26 +65,23 @@ public class Rifle : MonoBehaviour
 
             if (rayHit.collider.CompareTag("Enemy"))
                 rayHit.collider.GetComponent<Target>().Takedamage(damage);
+
+            //Graphics
+            if (rayHit.collider.CompareTag("Wall"))
+            {
+
+                Instantiate(bulletHoleGraphic, rayHit.point + new Vector3(0.01f, 0.01f, 0.01f), Quaternion.LookRotation(rayHit.normal));
+                Instantiate(dirt, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+
+            }
+
+            if (rayHit.collider.CompareTag("Ground"))
+            {
+
+                Instantiate(dirt, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+
+            }
         }
-
-
-        //Graphics
-        if (rayHit.collider.CompareTag("Wall"))
-        {
-            
-            Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.LookRotation(rayHit.normal));
-            Instantiate(dirt, rayHit.point, Quaternion.LookRotation(rayHit.normal));
-
-        }
-
-        if (rayHit.collider.CompareTag("Ground"))
-        {
-
-            Instantiate(dirt, rayHit.point, Quaternion.LookRotation(rayHit.normal));
-
-        }
-        
-        Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
 
         bulletsLeft--;
         bulletsShot--;
