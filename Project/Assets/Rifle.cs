@@ -20,7 +20,6 @@ public class Rifle : MonoBehaviour
 
     //Graphics
     public GameObject bulletHoleGraphic, muzzleFlash;
-    public Transform muzzlePoint;
     public ParticleSystem dirt;
     private void Awake()
     {
@@ -30,6 +29,12 @@ public class Rifle : MonoBehaviour
     private void Update()
     {
         MyInput();
+        if(bulletsLeft == 0)
+        {
+
+            Reload();
+
+        }
 
     }
     private void MyInput()
@@ -55,9 +60,10 @@ public class Rifle : MonoBehaviour
         //Spread
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
+        float z = Random.Range(-spread, spread);
 
         //Calculate Direction with Spread
-        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
+        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, z);
 
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
@@ -94,8 +100,14 @@ public class Rifle : MonoBehaviour
         if (bulletsShot > 0 && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
 
-        Instantiate(muzzleFlash, muzzlePoint.position, Quaternion.identity);
+        muzzleFlash.SetActive(true);
+        //Invoke("RemoveMuzzleFlash", timeBetweenShots);
 
+    }
+    void RemoveMuzzleFlash()
+    {
+
+        muzzleFlash.SetActive(false);
 
     }
     void ResetShot()
